@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #f6d2ff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,9 +17,12 @@
         }
 
         .quiz-container {
-            background-color: #fff;
+            background-color: #ffeefc;
             padding: 30px;
             border-radius: 10px;
+            border-style: dotted;
+            border-width: 2px;
+            border-color: pink;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             width: 450px;
         }
@@ -49,14 +52,14 @@
         }
 
         .options li.selected {
-            background: #d1ecf1;
-            border-left: 5px solid #17a2b8;
+            background: #ffd3f0;
+            border-left: 5px solid #ff6aeb;
         }
 
         button {
             width: 100%;
             padding: 12px;
-            background-color: #007bff;
+            background-color: #ef41ff;
             color: white;
             border: none;
             border-radius: 5px;
@@ -67,7 +70,7 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #b3008c;
         }
 
         button:disabled {
@@ -93,6 +96,7 @@
     <div class="quiz-container" id="result-container">
         <h2>Quiz completado!</h2>
         <div class="question" id="score-text"></div>
+        <div class="happytext" id="happy-text"></div>
         <button onclick="restartQuiz()">Recomeçar</button>
     </div>
 
@@ -208,6 +212,7 @@
         const quizBox = document.getElementById('quiz-container');
         const resultBox = document.getElementById('result-container');
         const scoreText = document.getElementById('score-text');
+        const happytexto = document.getElementById('happy-text');
 
         function loadQuestion() {
             const currentQuestion = quizData[currentQuestionIdx];
@@ -252,10 +257,23 @@
             }
         });
 
+        function textoPontuacao(pont){
+            if (pont == 10){
+                happytexto.innerText = `Vocês dois são um casal perfeito!`;
+            }
+            else if (pont >= 6){
+                happytexto.innerText = `Vocês estão próximos a perfeição de um casal!`;
+            }
+            else{
+                happytexto.innerText = `Às vezes, é difícil lembrar de cada detalhe, mas sempre podemos lembrar novamente das memórias!`;
+            }
+        }
+
         function showResults() {
             quizBox.style.display = 'none';
             resultBox.style.display = 'block';
             scoreText.innerText = `Placar: ${score} de ${quizData.length}!`;
+            textoPontuacao(score);
         }
 
         function restartQuiz() {
