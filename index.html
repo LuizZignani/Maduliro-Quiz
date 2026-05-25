@@ -27,6 +27,21 @@
             width: 450px;
         }
 
+        .image {
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+        }
+
+        img {
+            background-color: #ffeefc;
+            border-radius: 10px;
+            border-style: dotted;
+            border-width: 2px;
+            border-color: pink;
+            image-resolution: inherit;
+        }
+
         .question {
             font-size: 1.2rem;
             margin-bottom: 20px;
@@ -88,6 +103,8 @@
 <body>
 
     <div class="quiz-container" id="quiz-container">
+        <div class="image" id="question-image">
+        </div>
         <div class="question" id="question-text">Carregando pergunta...</div>
         <ul class="options" id="options-list"></ul>
         <button id="next-btn" disabled>Próxima pergunta</button>
@@ -103,6 +120,7 @@
     <script>
         const quizData = [
             {
+                image: "<img src='./img/img1.jpeg' width='50%' height='50%'>",
                 question: "Qual o nome dos nossos filhos?",
                 options: [
                     "Kushashu e Kurama",
@@ -113,6 +131,7 @@
                 correct: 3
             },
             {
+                image: "<img src='./img/img2.jpeg' width='50%' height='50%'>",
                 question: "Qual a data do nosso namoro?",
                 options: [
                     "03/05/2026",
@@ -123,6 +142,7 @@
                 correct: [1, 3]
             },
             {
+                image: "<img src='./img/img3.jpeg' width='50%' height='50%'>",
                 question: "Qual será a data do nosso noivado e casamento?",
                 options: [
                     "Agora, os dois",
@@ -133,6 +153,7 @@
                 correct: [0, 1, 2, 3]
             },
             {
+                image: "<img src='./img/img4.jpeg' width='50%' height='50%'>",
                 question: "Quem ama mais?",
                 options: [
                     "O Murilo",
@@ -143,6 +164,7 @@
                 correct: 0
             },
             {
+                image: "<img src='./img/img5.jpeg' width='50%' height='50%'>",
                 question: "Quem falou 'Eu te amo' primeiro?",
                 options: [
                     "O Murilo",
@@ -151,6 +173,7 @@
                 correct: 0
             },
             {
+                image: "<img src='./img/img6.jpeg' width='50%' height='50%'>",
                 question: "Qual foi nosso primeiro encontro?",
                 options: [
                     "Cinema",
@@ -161,6 +184,7 @@
                 correct: 0
             },
             {
+                image: "<img src='./img/img7.jpeg' width='50%' height='50%'>",
                 question: "Em ordem, quais foram os bichinhos que nós modelamos?",
                 options: [
                     "Cogumelo, dinossauro e urso",
@@ -171,6 +195,7 @@
                 correct: 3
             },
             {
+                image: "<img src='./img/img8.jpeg' width='50%' height='50%'>",
                 question: "De onde vem a frase: 'Eu te amo mais do que uma pessoa poderia amar outra pessoa'",
                 options: [
                     "Crepúsculo",
@@ -181,6 +206,7 @@
                 correct: 3
             },
             {
+                image: "<img src='./img/img9.jpeg' width='50%' height='50%'>",
                 question: "Se um de nós comenta que acabou de esquecer o que iria falar, a opção certa a se fazer é:",
                 options: [
                     "Tentar ajudar a lembrar, como repetindo oq estava dizendo antes.",
@@ -191,6 +217,7 @@
                 correct: 2
             },
             {
+                image: "<img src='./img/img10.jpeg' width='50%' height='50%'>",
                 question: "Qual a data prevista para nós amarmos",
                 options: [
                     "Sempre",
@@ -213,9 +240,11 @@
         const resultBox = document.getElementById('result-container');
         const scoreText = document.getElementById('score-text');
         const happytexto = document.getElementById('happy-text');
+        const imagem = document.getElementById('question-image');
 
         function loadQuestion() {
             const currentQuestion = quizData[currentQuestionIdx];
+            imagem.innerHTML = currentQuestion.image;
             questionText.innerText = `${currentQuestionIdx + 1}. ${currentQuestion.question}`;
             optionsList.innerHTML = '';
             selectedAnswerIdx = null;
@@ -257,14 +286,14 @@
             }
         });
 
-        function textoPontuacao(pont){
-            if (pont == 10){
+        function textoPontuacao(pont) {
+            if (pont == 10) {
                 happytexto.innerText = `Vocês dois são um casal perfeito!`;
             }
-            else if (pont >= 6){
+            else if (pont >= 6) {
                 happytexto.innerText = `Vocês estão próximos a perfeição de um casal!`;
             }
-            else{
+            else {
                 happytexto.innerText = `Às vezes, é difícil lembrar de cada detalhe, mas sempre podemos lembrar novamente das memórias!`;
             }
         }
@@ -284,7 +313,7 @@
             loadQuestion();
         }
 
-        function iddqd(){
+        function iddqd() {
             console.log("4,4,4,1,1,1,4,4,3,4");
         }
 
